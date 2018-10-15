@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div id="container">
+        <div class="border-bottom" id="message-container">
+            <button id="poruka-button">Klikni me!</button>
+            <h2 id="pozdrav-txt">Cao!</h2>
+            <button id="promeni-txt" onclick="">Promeni tekst</button>
+        </div>
+        <div class="border-bottom" id="picure-container">
+            <img src="img/Hello.png">
+        </div>
+        <div class="border-bottom" id="pol-container">
+            <p>Pol</p>
+            <input type="radio" id="male" name="muskizenski" value="Muski">Muski <br>
+            <input type="radio" id="female" name="muskizenski" value="Zenski">Zenski <br>
+            <input type="button" id="izaberi-pol" value="Dobij informaciju sta si odabrao">
+            <p id="pol-txt">Izabran pol: Nije izabrano</p>
+        </div>
+        <div class="border-bottom" id="form-container">
+            <form>
+                Ime: <input type="text" id="ime" required placeholder="Vase ime"> <br> Prezime: <input type="text" id="prezime" required placeholder="Vase prezime"> <br> Omiljena zivotinja: <input type="text" id="zivotinja" placeholder="Omiljena zivotinja"> <br>
+                <input type="submit" id="submit" value="Dalje"> <br>
+                <input type="button" id="prikazi-unos" value="Prikazi unos">
+            </form>
+            <div id="prikaziUnosDivContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        const container = document.querySelector('#container'),
+            poruka_button = document.querySelector('#poruka-button'),
+            dobrodosliH2 = document.querySelector('#pozdrav-txt'),
+            promeni_poz = document.querySelector('#promeni-txt'),
+            image = document.querySelector('#picure-container img');
+
+
+        poruka_button.onclick = function() {
+            alert('Dobrodosli!');
+        }
+        promeni_poz.onclick = function() {
+            dobrodosliH2.style.cssText = "font-size: 30px; background-color: white;";
+            dobrodosliH2.innerHTML = 'Tekst se promenio';
+        }
+
+        image.onmouseenter = function() {
+            this.src = 'img/you-got-this.png'
+        };
+        image.onmouseleave = function() {
+            this.src = 'img/hello.png'
+        };
+
+
+        const pol_text = document.querySelector('#pol-txt'),
+            izaberi_pol = document.querySelector('#izaberi-pol'),
+            pol = document.querySelectorAll('#pol-container input[type="radio"]'),
+            form = document.querySelector('form'),
+            prikazi_unos = document.querySelector('#prikazi-unos'),
+            prikaziUnosDivContainer = document.querySelector('#prikaziUnosDivContainer');
+
+        pol_text.style.display = 'none';
+        izaberi_pol.onclick = function() {
+            pol_text.style.display = 'block';
+            pol.forEach(function(pol) {
+                if (pol.checked) pol_text.innerHTML = 'Izabran pol: ' + pol.value;
+            });
+        }
+
+        form.onsubmit = function() {
+            document.writeln('Hvala Vam na izdvojenom vremenu!<br><br><br>');
+            let n = document.createElement('input');
+            n.setAttribute('type', 'button');
+            n.setAttribute('value', 'nazad');
+            document.querySelector('body').appendChild(n);
+            n.onclick = function() {
+                window.location.reload();
+            }
+        }
+        prikazi_unos.onclick = function() {
+            prikaziUnosDivContainer.innerHTML = `
+				${form.children[0].value}<br>
+				${form.children[2].value}<br>
+				${form.children[4].value}
+			`;
+        }
+
+        setInterval(
+            function() {
+                var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+                container.style.backgroundColor = "#" + randomColor;
+            }, 1000);
+    </script>
+
+
+</body>
+
+</html>

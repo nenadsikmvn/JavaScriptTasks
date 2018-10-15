@@ -1,0 +1,23 @@
+	#container {
+	    background-color: white;
+	    width: 400px;
+	}
+
+	.border-bottom {
+	    padding: 10px;
+	    border-bottom: 1px solid darkgray;
+	}
+
+	#picure-container {
+	    height: 200px;
+	}
+
+	#picure-container img {
+	    height: 100%;
+	}
+
+	#prikaziUnosDivContainer {
+
+	    padding-top: 10px;
+	}
+
